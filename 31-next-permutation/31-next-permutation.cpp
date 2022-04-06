@@ -9,19 +9,20 @@ public:
                 break;
             }
         }
-        if(ind>=0)
+        if(ind<0)
         {
-       
-            for(in=n-1;in>ind;in--)
-            {
-                if(nums[ind]<nums[in])
-                {
-                    break;
-                }
-            }
-            swap(nums[in],nums[ind]);
+           reverse(nums.begin(),nums.end());
+            return;
         }
+        for(in=n-1;in>ind;in--)
+        {
+            if(nums[ind]<nums[in])
+            {
+                break;
+            }
+        }
+        swap(nums[in],nums[ind]);
         reverse(nums.begin()+ind+1,nums.end());
-    } 
-    
+        
+    }
 };
