@@ -4,7 +4,7 @@ public:
       int maxprice=0,minprice=INT_MAX;
         for(int it:a)
         {
-          if(it<minprice)  minprice=it;
+            minprice=min(minprice,it);
             maxprice=max(maxprice,it-minprice);
         }
         return maxprice;
