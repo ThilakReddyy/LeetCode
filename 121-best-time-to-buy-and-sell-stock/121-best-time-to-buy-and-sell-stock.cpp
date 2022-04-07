@@ -1,12 +1,15 @@
 class Solution {
 public:
     int maxProfit(vector<int>& a) {
-      int maxprice=0,minprice=INT_MAX;
-        for(int i=0;i<a.size();i++)
+       int dp[2] = { INT_MIN, INT_MIN };
+        
+        for (auto p : a)
         {
-            minprice=min(minprice,a[i]);
-            maxprice=max(maxprice,a[i]-minprice);
+            auto dp0 = dp[0];
+            dp[0] = max(dp[0], -p);
+            dp[1] = max(dp[1], dp0 + p);
         }
-        return maxprice;
+        
+        return max(0, max(dp[0], dp[1]));
     }
 };
