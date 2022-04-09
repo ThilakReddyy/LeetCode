@@ -10,59 +10,39 @@
  */
 class Solution {
 public:
-    
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2,int count=0) {
-        if(l1==NULL && l2==NULL)
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        int carry=0,a;
+        ListNode *temp=l1,*prev=l1;
+        while(l1 || l2)
         {
-            if(count>0)return new ListNode(count);
-            return NULL;
-        }
-        else if(l1==NULL && l2!=NULL)
-        {
-            if(count>0)
+            prev=l1;
+            if(!l1->next && l2)
             {
-               ListNode* temp=l2;
-                ListNode* prev=l2;
-                while(temp && count>0)
-                {
-                    int p=temp->val+count;
-                    temp->val=p%10;
-                    count=p/10;
-                    prev=temp;
-                    temp=temp->next;
-                }
-                if(count>0)
-                {
-                    prev->next=new ListNode(count);
-                }
+                l1->next=l2->next;
+                l2->next=NULL;
             }
-            return l2;
-        }
-        else if(l2==NULL && l1!=NULL)
-        {
-            if(count>0)
+            if(!l2)
             {
-                ListNode* temp=l1;
-                ListNode* prev=l1;
-                while(temp && count>0)
-                {
-                    int p=temp->val+count;
-                    temp->val=p%10;
-                    count=p/10;
-                    prev=temp;
-                    temp=temp->next;
-                }
-                if(count>0)
-                {
-                    prev->next=new ListNode(count);
-                }
+                a=l1->val+carry;
+                l1->val=a%10;
+                carry=a/10;
+                l1=l1->next;
             }
-            return l1;
-        }
+            else
+            {
+             a=l1->val+l2->val+carry;
+                l1->val=a%10;
+                carry=a/10;
+                l1=l1->next;
+                l2=l2->next;
+            }
         
-        int p=l1->val+l2->val+count;
-        l1->val=p%10;;
-        l1->next=addTwoNumbers(l1->next,l2->next,p/10);
-        return l1;
+            
+        }
+        if(carry==1)
+        {
+            prev->next=new ListNode(1);
+        }
+        return temp;
     }
 };
