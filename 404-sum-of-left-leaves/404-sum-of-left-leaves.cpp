@@ -13,13 +13,11 @@ class Solution {
 public:
  
      int sumOfLeftLeaves(TreeNode* root,int c=1) {
-        if (root == NULL)
-            return 0;
-        if (!root->left && !root->right && c == -1)
-            return root->val;
-        
-        int la = sumOfLeftLeaves(root->left, -1);
-        int ra = sumOfLeftLeaves(root->right, 1);
+
+        if (!root->left && !root->right && c == -1) return root->val;
+        int la=0,ra=0;
+        if(root->left)la = sumOfLeftLeaves(root->left, -1);
+        if(root->right) ra = sumOfLeftLeaves(root->right, 1);
         return la + ra;
     }
 };
