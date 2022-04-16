@@ -9,9 +9,7 @@ public:
            num/=10;
         }
         sort(ans.begin(),ans.end());
-        int new1=(ans[0]*10)+ans[2];
-        int new2=(ans[1]*10)+ans[3];
-        return new1+new2;
+        return (ans[0]*10)+ans[2]+(ans[1]*10)+ans[3];
         
     }
 };
