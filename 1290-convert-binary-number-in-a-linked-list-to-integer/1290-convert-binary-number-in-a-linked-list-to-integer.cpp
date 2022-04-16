@@ -16,17 +16,13 @@ public:
         while(head)
         {
             binary=binary+to_string(head->val);
-            
             head=head->next;
         }
         int n=binary.length();
-      for(int i=0;i<n;i++)
-      {
-          if(binary[i]=='1')
-          {
-              number=number+pow(2,n-i-1);
-          }
-      }
+        for(int i=0;i<n;i++)
+        {
+            if(binary[i]=='1') number=number+pow(2,n-i-1);
+         }
         return number;
     }
 };
