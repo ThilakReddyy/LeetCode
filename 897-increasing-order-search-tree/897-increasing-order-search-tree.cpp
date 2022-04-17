@@ -11,24 +11,24 @@
  */
 class Solution {
 public:
-    void getNodes(TreeNode* root,vector<int>&v)
+    void Inorder(TreeNode* root, vector<int>&v)
     {
         if(root==NULL)return ;
-        getNodes(root->left,v);
+        Inorder(root->left,v);
         v.push_back(root->val);
-        getNodes(root->right,v);
+        Inorder(root->right,v);
     }
     TreeNode* increasingBST(TreeNode* root) {
         vector<int>v;
-        getNodes(root,v);
-        TreeNode* ret=new TreeNode(-1);
-        TreeNode* reti=ret;
-        for(auto i:v)
+        Inorder(root,v);
+        TreeNode* rooti=new TreeNode(-1);
+        TreeNode* ret=rooti;
+        for(int i=0;i<v.size();i++)
         {
-            ret->right=new TreeNode(i);
-            
-            ret=ret->right;
+            TreeNode* temp=new TreeNode(v[i]);
+            rooti->right=temp;
+            rooti=temp;
         }
-        return reti->right;
+        return ret->right;
     }
 };
